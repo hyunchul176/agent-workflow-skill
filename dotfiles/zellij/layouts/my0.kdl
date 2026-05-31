@@ -1,0 +1,15 @@
+layout {
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        pane size="72%" split_direction="vertical" {
+            pane focus=true size="50%"
+            pane size="50%"
+        }
+        pane size="27%"
+        pane size=1 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+}
