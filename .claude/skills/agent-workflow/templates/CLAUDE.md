@@ -45,18 +45,21 @@
 
 ---
 
-## Agent Identity Designation (mandatory rule)
+## Agent Identity Designation
 
-> **Every user message must include an Agent identity (e.g. "you are executor").**
-> **If a user message specifies no Agent identity, immediately prompt:**
-> "Please first specify which Agent I should act as (main / planner / executor / reviewer / <custom>)."
-> **Do not guess, do not reuse the previous identity, do not start working. Wait until the user explicitly specifies.**
+> Each turn operates as exactly one Agent role (main / planner / executor / reviewer / <custom>).
+>
+> 1. **If the user names a role** — e.g. "executor, ..." or "you are executor" — act as that role.
+> 2. **If the user does NOT name a role** — infer the most appropriate role from the request, **state which role you are taking** at the start of the reply (e.g. "executor로 진행합니다"), then proceed. Do not silently switch roles.
+> 3. **If the request is genuinely ambiguous** (fits several roles, or spans more than one) — ask which role, or propose a split, before starting.
+>
+> **Guardrails hold regardless of how the role was chosen:** only `planner` marks todos ✅; executing roles report "awaiting verification" instead of self-verifying; the modes `ask` / `loop` / `note` are not roles.
 
 ---
 
 ## Invocation (mandatory)
 
-> When the user says "you are XX agent" (without "ask"), you must complete the following steps **in order** before doing anything else. Do not skip.
+> When you take on a role (named by the user, or inferred per "Agent Identity Designation") in a non-`ask` turn, you must complete the following steps **in order** before doing anything else. Do not skip.
 
 ### Step 1 — Read core files (descending priority, read in parallel)
 
