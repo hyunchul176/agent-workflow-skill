@@ -2,6 +2,8 @@
 
 A portable, fully local **Claude Code workflow**. Split a project into multiple **Agent roles** (main / planner / executor / reviewer + your own), each with its own responsibilities, memory, activity traces, and knowledge capture. Ideal for one person who wants to drive a complex project as a disciplined "virtual team".
 
+> 📖 **Team guide (rendered):** https://hyunchul176.github.io/agent-workflow-skill/
+
 > Pure local files — no server / SSH required.
 
 > **Two depths of use:**
