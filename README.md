@@ -12,7 +12,7 @@ A portable, fully local **Claude Code workflow**. Split a project into multiple 
 
 ## What this workflow gives you
 
-- **Role division**: start each message with "you are executor / planner / …", and Claude switches to that role's responsibilities and memory.
+- **Role division**: name a role to switch Claude into its responsibilities and memory — or just describe the task and Claude infers the role, announces it, and proceeds (**role auto-routing**).
 - **Persistent memory**: each role has its own `MEMORY.md`; the next conversation auto-resumes from last progress.
 - **Situational awareness**: a global `activity_log.md` lets every role know what the others did recently.
 - **Blockers protocol**: register what's stuck, with a clear owner and how to patch it.
@@ -54,6 +54,8 @@ you are reviewer note an unlocked connection pool intermittently 500s under load
 planner verify phase 1 step 1                                                     # mark ✅
 ```
 
+> You don't have to write `you are`. Naming the role (`planner, …`) — or even just describing the task — works too; the role is inferred and announced before work starts.
+
 ## Roles & Modes at a Glance
 
 | Built-in role | Responsibility |
@@ -67,7 +69,7 @@ Add a custom role: `/agent-workflow add-agent <name>` (e.g. `designer` / `data_a
 
 | Mode | Trigger |
 |------|---------|
-| Standard execution | `you are <agent>` |
+| Standard execution | `<agent>, …` (or `you are <agent>`; omit it and the role is inferred) |
 | Ask (lightweight Q&A) | `<agent> ask …` |
 | Exec-Review loop | `... loop ...` |
 | Note (knowledge capture) | `<agent> note …` |
